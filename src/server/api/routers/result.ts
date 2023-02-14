@@ -49,8 +49,8 @@ export const resultsRouter = createTRPCRouter({
     m_5_2: z.number(),
     m_5_3: z.number(),
   }))
-  .mutation(({input, ctx}) => {
-    const response = ctx.prisma.result.create({
+  .mutation(async ({input, ctx}) => {
+    const response = await ctx.prisma.result.create({
       data: input
     })
     console.log(response)
