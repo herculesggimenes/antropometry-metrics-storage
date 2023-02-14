@@ -16,23 +16,48 @@ datasource db {
 }
 
 
-model Metric {
-    id String  @id @default(cuid())
-    code String
-    description String
-    results Result[]
-}
-
-
-
 model Result {
     id String @id @default(cuid())
-    metricId String
     gender String
-    createdBy String
+    m_1_1 Float
+    m_1_2 Float
+    m_1_3 Float
+    m_1_4 Float
+    m_1_5 Float
+    m_1_6 Float
+    m_1_7 Float
+    m_1_8 Float
+    m_1_9 Float
+    m_1_10 Float
+    m_2_1 Float
+    m_2_2 Float
+    m_2_3 Float
+    m_2_4 Float
+    m_2_5 Float
+    m_2_6 Float
+    m_2_7 Float
+    m_2_8 Float
+    m_2_9 Float
+    m_2_10 Float
+    m_2_11 Float
+    m_2_12 Float
+    m_2_13 Float
+    m_3_1 Float
+    m_3_2 Float
+    m_3_3 Float
+    m_3_4 Float
+    m_3_5 Float
+    m_4_1 Float
+    m_4_2 Float
+    m_4_3 Float
+    m_4_4 Float
+    m_4_5 Float
+    m_4_6 Float
+    m_4_7 Float
+    m_5_1 Float
+    m_5_2 Float
+    m_5_3 Float
     createdAt DateTime @default(now())
-    metric Metric @relation(fields: [metricId], references: [id], onDelete: Cascade)
-    @@index([metricId])
 }
 
 
