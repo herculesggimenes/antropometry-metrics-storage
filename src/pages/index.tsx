@@ -17,7 +17,8 @@ const Home: NextPage = () => {
   const [ordem, setOrdem] = useState(0)
   const [mediaEscolhida, setMediaEscolhida] = useState<string | undefined>("")
   const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
+  const [message, setMessage] = useState("")
+  const [severity, setSeverity] = useState("success")
   const postMutation = api.results.publish.useMutation()
   const downloadBaseMutation = api.results.getAll.useMutation({
     
@@ -140,8 +141,10 @@ const Home: NextPage = () => {
             }
             const savedItem = localStorage.getItem(medida.ordem.toString())
             if (!savedItem){
+              setMessage(`Erro na medida ${medida.item}`)
+              setSeverity('error')
               setSnackbarOpen(true)
-              setErrorMessage(`Erro na medida ${medida.item}`)
+
               return
             }
             //@ts-ignore
@@ -151,8 +154,11 @@ const Home: NextPage = () => {
           result.gender = genero
           //@ts-ignore
           const response = postMutation.mutate(result)
-          // setOrdem(0)
-          // localStorage.clear()
+          setMessage("Sucesso ao Enviar Resposta, Voltando ao Início...")
+          setSeverity("success")
+          setSnackbarOpen(true)
+          setOrdem(0)
+          localStorage.clear()
           return
         }
         if (value){
@@ -293,8 +299,8 @@ const Home: NextPage = () => {
         </div>
         </Card>
         <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <Alert onClose={handleSnackbarClose} severity="error" sx={{ width: '100%' }}>
-        {errorMessage}
+        <Alert onClose={handleSnackbarClose} severity={severity} sx={{ width: '100%' }}>
+          {message}
         </Alert>
         </Snackbar>
         </main>
