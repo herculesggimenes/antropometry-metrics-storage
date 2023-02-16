@@ -304,9 +304,13 @@ const Home: NextPage = () => {
         </div>
         </Card>
         <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <Alert onClose={handleSnackbarClose} severity={severity} sx={{ width: '100%' }}>
-          {message}
-        </Alert>
+        {
+        //@ts-ignore
+          <Alert onClose={handleSnackbarClose} severity={severity} sx={{ width: '100%' }}>
+            {message}
+          </Alert>
+        }
+        
         </Snackbar>
         </main>
         </>
