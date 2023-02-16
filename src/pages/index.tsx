@@ -35,8 +35,7 @@ const Home: NextPage = () => {
       
       console.log(data)
       const headers = [
-        "id",
-        "gender",
+        "Sexo",
         "m_1_1",
         "m_1_2",
         "m_1_3",
@@ -80,7 +79,6 @@ const Home: NextPage = () => {
 
       const resultsCsv = data.reduce((acc: string[], result: { [x: string]: any; }) => {
         acc.push([
-          result["id"],
           result["gender"],
           result["m_1_1"],
           result["m_1_2"],
@@ -120,7 +118,7 @@ const Home: NextPage = () => {
           result["m_5_1"],
           result["m_5_2"],
           result["m_5_3"],
-          result["createdAt"],
+          result["createdAt"].toLocaleString(),
         ].join(','))
         return acc
       },[])
