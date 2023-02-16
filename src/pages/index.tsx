@@ -150,6 +150,8 @@ const Home: NextPage = () => {
             }
             const savedItem = localStorage.getItem(medida.ordem.toString())
             if (!savedItem){
+              console.log(medida.ordem)
+              console.log(localStorage.getItem(medida.ordem.toString()))
               setMessage(`Erro na medida ${medida.item}`)
               setSeverity('error')
               setSnackbarOpen(true)
