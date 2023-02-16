@@ -19,7 +19,16 @@ const Home: NextPage = () => {
   const [snackbarOpen, setSnackbarOpen] = useState(false)
   const [message, setMessage] = useState("")
   const [severity, setSeverity] = useState("success")
-  const postMutation = api.results.publish.useMutation()
+  const postMutation = api.results.publish.useMutation({
+    onSuccess:() => {
+      setSeverity("success")
+      setMessage("Sucesso ao Enviar Resposta, Voltando ao Início...")
+      setSnackbarOpen(true)
+      setOrdem(0)
+      localStorage.clear()
+    }
+
+  })
   const downloadBaseMutation = api.results.getAll.useMutation({
     
     onSuccess:(data,variables)=> {
@@ -154,11 +163,7 @@ const Home: NextPage = () => {
           result.gender = genero
           //@ts-ignore
           const response = postMutation.mutate(result)
-          setMessage("Sucesso ao Enviar Resposta, Voltando ao Início...")
-          setSeverity("success")
-          setSnackbarOpen(true)
-          setOrdem(0)
-          localStorage.clear()
+          
           return
         }
         if (value){
