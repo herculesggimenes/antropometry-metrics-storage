@@ -35,7 +35,7 @@ const Home: NextPage = () => {
       
       console.log(data)
       const headers = [
-        "Gênero",
+        "Genero",
         "1.1",
         "1.2",
         "1.3",
